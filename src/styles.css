@@ -1,0 +1,52 @@
+:root {
+  color-scheme: light dark;
+  /* LIGHT COLORS */
+  --body-bg-light: #faf4ed;
+  --body-text-light: #575279;
+
+  --button-bg-light: #f2e9e1; 
+  --button-border-light: #9893a5;
+
+  /* DARK COLORS */
+  --body-bg-dark: #232136;
+  --body-text-dark: #e0def4;
+
+  --button-bg-dark: #393552; 
+  --button-border-dark: #6e6a86;
+}
+
+/*#sidebar {*/
+/*	inset: 0px;*/
+/*	position: absolute;*/
+/*}*/
+/**/
+/*#sidebar .shadow {*/
+/*	background: linear-gradient(270deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0));*/
+/*	bottom: 0px;*/
+/*	position: absolute;*/
+/*	right: 0px;*/
+/*	top: 0px;*/
+/*	width: 3px;*/
+/*}*/
+
+@media (prefers-color-scheme: dark) {
+  body { 
+    background: var(--body-bg-dark); 
+    color: var(--body-text-dark); 
+  }
+  button{
+    background: var(--button-bg-dark);
+    border: 2px solid var(--button-border-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body { 
+    background: var(--body-bg-light); 
+    color: var(--body-text-light); 
+  }
+  button{
+    background: var(--button-bg-light);
+    border: 2px solid var(--button-border-light);
+  }
+}
