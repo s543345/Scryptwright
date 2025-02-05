@@ -5,7 +5,9 @@ Scryptwright is an application designed to help novelists accelerate their writi
 _To be added_
 
 # Installation Process
-_To be added_
+- Clone repository
+- CD into /src/
+- run `npm run start`
 
 
 # Development Process
