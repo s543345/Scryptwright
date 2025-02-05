@@ -7,6 +7,7 @@ _To be added_
 # Installation Process
 - Clone repository
 - CD into /src/
+- run `npm install`
 - run `npm run start`
 
 
