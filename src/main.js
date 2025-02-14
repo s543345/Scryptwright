@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron/main')
+const { app, BrowserWindow, clipboard, ipcMain, nativeTheme } = require('electron/main')
 const path = require('node:path')
 
 function createWindow() {
@@ -10,7 +10,8 @@ function createWindow() {
 		show: false,
 		titleBarStyle: "hidden",
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+			preload: path.join(__dirname, 'preload.js'),
+			nodeIntegration: true
     }
 	})
 
@@ -39,4 +40,5 @@ function createWindow() {
 }
 
 app.whenReady().then(() => createWindow());
+
 app.on("window-all-closed", () => app.quit());
