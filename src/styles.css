@@ -67,6 +67,7 @@
   */
 iframe{
   border: solid black;
+  resize: both;
 }
 #docs{
   position: absolute;
@@ -80,5 +81,5 @@ iframe{
   width: 200px;
   height: 500px;
   top:50px;
-  right:100px
+  right:100px;
 }
