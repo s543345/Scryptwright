@@ -9,10 +9,11 @@ function createWindow() {
 		width: 900,
 		show: false,
 		titleBarStyle: "hidden",
-		...(process.platform !== 'darwin' ? {titleBarOverlay: true} : {}),
-    titleBarOverlay: {
-      color:: " #00000000"
-    },
+		...(process.platform !== 'darwin' ? {titleBarOverlay: true} : {
+      color: '#2f324100',
+      symbolColor: '#74b1be',
+      }
+    ),
     webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 			nodeIntegration: true
