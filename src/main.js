@@ -10,6 +10,9 @@ function createWindow() {
 		show: false,
 		titleBarStyle: "hidden",
 		...(process.platform !== 'darwin' ? {titleBarOverlay: true} : {}),
+    titleBarOverlay: {
+      color:: " #00000000"
+    },
     webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 			nodeIntegration: true
