@@ -9,6 +9,7 @@ function createWindow() {
 		width: 900,
 		show: false,
 		titleBarStyle: "hidden",
+		...(process.platform !== 'darwin' ? {titleBarOverlay: true} : {}),
     webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 			nodeIntegration: true
