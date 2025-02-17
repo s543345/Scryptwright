@@ -39,6 +39,10 @@
   button{
     background: var(--button-bg-dark);
     border: 2px solid var(--button-border-dark);
+    border-radius: 12px;
+  }
+  .button:hover{
+    background-color: var(--button-border-light);
   }
 }
 
@@ -52,22 +56,29 @@
   button{
     background: var(--button-bg-light);
     border: 2px solid var(--button-border-light);
+    border-radius: 12px;
+  }
+  .button:hover{
+    background-color: var(--button-border-dark);
   }
 }
 /* sources: electron documentation,
   binaryfunt / electron-seamless-titlebar-tutorial,
   */
 iframe{
-  postions: grid;
   border: solid black;
 }
-#documents{
-  width: 100%;
-  height: 100%;
-}
-#comments{
+#docs{
+  position: absolute;
   width: 200px;
-  height: 400px;
+  height: 500px;
+  top: 50px;
+  left:100px;
+}
+#coms{
+  position: absolute;
+  width: 200px;
+  height: 500px;
   top:50px;
   right:100px
 }
