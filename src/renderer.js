@@ -8,13 +8,18 @@ document.getElementById('reset-to-system').addEventListener('click', async () =>
   document.getElementById('theme-source').innerHTML = 'System'
 })
 //frame size adjust to the window size
+var hdfr = document.getElementById('header')
 var docfr = document.getElementById('docs')
 var comfr = document.getElementById('coms')
+hdfr.onload = function(){
+  hdfr.style.height = window.innerHeight + 'px';
+  hdfr.style.width = window.innerWidth + 'px';
+}
 docfr.onload = function(){
-  docfr.style.height = docfr.contentWindonw.document.body.scrollHeight + 'px';
-  docfr.style.width = docfr.contentWindonw.document.body.scrollWidth + 'px';
+  docfr.style.height = docfr.contentWindow.document.body.scrollHeight + 'px';
+  docfr.style.width = docfr.contentWindow.document.body.scrollWidth + 'px';
 }
 comfr.onload = function(){
-  comfr.style.height = comfr.contentWindonw.document.body.scrollHeight + 'px';
-  comfr.style.width = comfr.contentWindonw.document.body.scrollWidth + 'px';
+  comfr.style.height = comfr.contentWindow.document.body.scrollHeight + 'px';
+  comfr.style.width = comfr.contentWindow.document.body.scrollWidth + 'px';
 }

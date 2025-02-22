@@ -3,10 +3,10 @@ const path = require('node:path')
 
 function createWindow() {
 	const mainWindow = new BrowserWindow({
-		height: 500,
+		height: 700,
 		minHeight: 400,
 		minWidth: 500,
-		width: 900,
+		width: 1000,
 		show: false,
 		titleBarOverlay: {
 			color: '#00000000'

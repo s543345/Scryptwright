@@ -9,17 +9,19 @@
 <body>
     <div id="sidebar"></div>
     <div class="shadow"></div>
+    <div class="header-content">
+        <p>Current theme source: <strong id="theme-source">System</strong></p>
+        <button class="button" id="toggle-dark-mode">Toggle Dark Mode</button>
+        <button class="button" id="reset-to-system">Reset to System Theme</button>
+    </div>
+    <iframe id="header", name = "topframe"></iframe>
 
-    <h1>The app</h1>
-    <p>Current theme source: <strong id="theme-source">System</strong></p>
     <div>
         <iframe id= "docs", name = "documents"></iframe>
     </div>
     <div>
         <iframe id= "coms", name = "comments"></iframe>
     </div>
-    <button class="button" id="toggle-dark-mode">Toggle Dark Mode</button>
-    <button class="button" id="reset-to-system">Reset to System Theme</button>
 
     <script src="renderer.js"></script>
 </body>
