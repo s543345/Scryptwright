@@ -14,13 +14,14 @@
         <button class="button" id="toggle-dark-mode">Toggle Dark Mode</button>
         <button class="button" id="reset-to-system">Reset to System Theme</button>
     </div>
-    <iframe id="header", name = "topframe"></iframe>
-
-    <div>
-        <iframe id= "docs", name = "documents"></iframe>
+    <div class="frameContainer">
+        <iframe id="header" name = "topframe"></iframe>
+        <iframe id= "docs" name = "documents">Documents</iframe>
+        <iframe id= "coms" name = "comments">Comments</iframe>
     </div>
     <div>
-        <iframe id= "coms", name = "comments"></iframe>
+        <textarea id="document" rows = "4" cols="50" placeholder="New Text Document"></textarea>
+        <span class="char-count" id="charnum">0 characters</span>
     </div>
 
     <script src="renderer.js"></script>
