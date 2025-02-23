@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Scriptwright</title>
@@ -15,12 +15,20 @@
         <button class="button" id="reset-to-system">Reset to System Theme</button>
     </div>
     <div class="frameContainer">
+
         <iframe id="header" name = "topframe"></iframe>
-        <iframe id= "docs" name = "documents">Documents</iframe>
-        <iframe id= "coms" name = "comments">Comments</iframe>
+
+        <iframe id= "docs" name = "documents"></iframe>
+        <label for="docs">Documents</label>
+
+        <iframe id= "coms" name = "comments"></iframe>
+        <label for="coms">Notes</label>
+        <textarea id="notes" rows="4" cols="5" placeholder="make a note" spellcheck = "true"></textarea>
+
     </div>
     <div>
-        <textarea id="document" rows = "4" cols="50" placeholder="New Text Document"></textarea>
+        <textarea id="document" rows = "4" cols="50" placeholder="type away!"
+                  spellcheck = "true" autocapitalize = "sentences"></textarea>
         <span class="char-count" id="charnum">0 characters</span>
     </div>
 
