@@ -65,7 +65,7 @@
   }
 
   iframe:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   }
 
@@ -110,7 +110,7 @@
   }
 
   iframe:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   }
 
@@ -125,12 +125,12 @@
 
 #header{
   position: absolute;
-  width: 100vw;
+  width: 99.7vw;
   height: 14vh;
   top: 0;
-  left: 0;
-  right: 0;
-  display: flow;
+  left: 1px;
+  right: 1px;
+  display: block;
   z-index: 1;
 }
 
@@ -139,6 +139,10 @@
   top:0;
   flex: auto;
   z-index: 10;
+}
+
+#settings{
+
 }
 
 label[for="docs"]{
@@ -152,7 +156,8 @@ label[for="docs"]{
   width: 15vw;
   height: 70vh;
   top: 15%;
-  left:0;
+  left:1px;
+  z-index:2;
 }
 
 label[for="coms"]{
@@ -166,7 +171,8 @@ label[for="coms"]{
   width: 15vw;
   height: 70vh;
   top: 15%;
-  right:0;
+  right:1px;
+  z-index:2;
 }
 
 .document{
@@ -205,6 +211,7 @@ textarea{
   transform: translate(-7%, -7%);
   width:13%;
   height: 60%;
+  z-index: 3;
 }
 
 .char-count{
