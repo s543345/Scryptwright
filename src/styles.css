@@ -126,7 +126,7 @@
 #header{
   position: absolute;
   width: 99.7vw;
-  height: 14vh;
+  height: 7vh;
   top: 0;
   left: 1px;
   right: 1px;
@@ -142,7 +142,8 @@
 }
 
 #settings{
-
+  position:absolute;
+  top: 10px;
 }
 
 label[for="docs"]{
@@ -154,8 +155,8 @@ label[for="docs"]{
 #docs{
   position: absolute;
   width: 15vw;
-  height: 70vh;
-  top: 15%;
+  height: 90vh;
+  top: 8%;
   left:1px;
   z-index:2;
 }
@@ -169,8 +170,8 @@ label[for="coms"]{
 #coms{
   position: absolute;
   width: 15vw;
-  height: 70vh;
-  top: 15%;
+  height: 90vh;
+  top: 8%;
   right:1px;
   z-index:2;
 }
@@ -198,8 +199,8 @@ textarea{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
-  height: 70%;
+  width: 40vw;
+  height: 80vh;
 }
 
 #notes{

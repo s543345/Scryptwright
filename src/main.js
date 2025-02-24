@@ -1,6 +1,9 @@
 const { app, BrowserWindow, clipboard, ipcMain, nativeTheme } = require('electron/main')
 const path = require('node:path')
 
+let settingsWindow;
+let mainWindow;
+
 function createWindow() {
 	const mainWindow = new BrowserWindow({
 		height: 700,
@@ -35,10 +38,36 @@ function createWindow() {
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system'
   })
+	ipcMain.on('open-settings',() => {
+		openSettings();
+	})
 
 	mainWindow.webContents.ipc.on("toMain", (event, command, data) => {
 			mainWindow.setWindowLayout(mainWindow.getNativeWindowHandle(), data.sidebarWidth, data.titlebarHeight);
 	});
+}
+
+function openSettings() {
+	if (!settingsWindow) {
+		settingsWindow = new BrowserWindow({
+			width: 400,
+			height: 400,
+			parent: mainWindow,
+			modal: true, //keeps the window on top
+			frame:true,
+			resizable: false,
+			webPreferences: {
+				preload: path.join(__dirname, 'preload.js'),
+				nodeIntegration: true
+			}
+		});
+		settingsWindow.webContents.loadFile('settings.html');
+
+		settingsWindow.setMenuBarVisibility(false);
+		settingsWindow.on('closed', () => {
+			settingsWindow = null;
+		})
+	}
 }
 
 app.whenReady().then(() => createWindow());

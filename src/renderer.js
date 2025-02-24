@@ -8,9 +8,6 @@ document.getElementById('reset-to-system').addEventListener('click', async () =>
   document.getElementById('theme-source').innerHTML = 'System'
 })
 
-document.getElementById('settings').addEventListener('click', async () => {
-
-})
 //frame size adjust to the window size
 var hdfr = document.getElementById('header')
 var docfr = document.getElementById('docs')
@@ -59,3 +56,7 @@ charnum.onload = function(){
 textArea.addEventListener('input', function() {
   charnum.textContent = this.value.length + " characters";
 })
+
+function openSettings(){
+  ipcRenderer.send('open-settings');
+}
