@@ -1,18 +1,28 @@
 :root {
   color-scheme: light dark;
   /* LIGHT COLORS */
-  --body-bg-light: #faf4ed;
-  --body-text-light: #575279;
+  --document-bg-light: #f2e9e1;      /*  Overlay */
+  --document-outline-light: #797593; /*  Subtle  */
+  --body-bg-light: #faf4ed;          /*  Base    */
+  --pane-bg-light: #f2e9e1;          /*  Overlay */
+  --pane-outline-light: #9893a5;     /*  Muted   */
+  --body-text-light: #575279;        /*  Text    */
+  --muted-text-light: #9893a5;       /*  Muted   */
 
-  --button-bg-light: #f2e9e1; 
-  --button-border-light: #9893a5;
+  --button-bg-light: #f2e9e1;        /*  Overlay */
+  --button-border-light: #9893a5;    /*  Muted   */
 
   /* DARK COLORS */
-  --body-bg-dark: #232136;
-  --body-text-dark: #e0def4;
+  --document-bg-dark: #26233a;      /*  Overlay */
+  --document-outline-dark: #908caa; /*  Subtle  */
+  --body-bg-dark: #191724;          /*  Base    */
+  --pane-bg-dark: #26233a;          /*  Overlay */
+  --pane-outline-dark: #6e6a86;     /*  Muted   */
+  --body-text-dark: #e0def4;        /*  Text    */
+  --muted-text-dark: #6e6a86;       /*  Muted   */
 
-  --button-bg-dark: #393552; 
-  --button-border-dark: #6e6a86;
+  --button-bg-dark: #26233a;        /*  Overlay */
+  --button-border-dark: #6e6a86;    /*  Muted   */
 }
 
 /*#sidebar {*/
@@ -34,45 +44,38 @@
   body {
     background: var(--body-bg-dark);
     color: var(--body-text-dark);
-    padding: 20px;
-    overflow-y: hidden;
+  }
+
+  .char-count{
+    color: var(--muted-text-dark);
   }
 
   button {
     background: var(--button-bg-dark);
     border: 2px solid var(--button-border-dark);
-    border-radius: 12px;
   }
 
   .button:hover {
-    background-color: var(--button-border-light);
+    background-color: var(--button-border-dark);
   }
 
   label{
-    position: absolute;
-    top:10px;
-    padding:20px;
     color: var(--body-text-dark);
-    font-size: 16px;
-    font-weight: bold;
   }
 
   iframe {
-
-  border: 1px var(--body-text-light) solid;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #3e3a70;
-  }
-
-  iframe:hover{
-    transform: scale(1.02);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border: 1px var(--pane-outline-dark) solid;
+    background-color: var(--pane-bg-dark);
   }
 
   textarea::placeholder{
-     color: var(--body-text-dark);
-     font-style: italic;
+     color: var(--muted-text-dark);
    }
+
+  textarea:focus {
+    border-color: var(--body-bg-dark);
+    box-shadow: 0 0 5px var(--document-outline-dark);
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -80,48 +83,76 @@
   body { 
     background: var(--body-bg-light); 
     color: var(--body-text-light);
-    padding: 20px;
-    overflow-y: hidden;
+  }
+
+  .char-count{
+    color: var(--muted-text-light);
   }
 
   button{
     background: var(--button-bg-light);
     border: 2px solid var(--button-border-light);
-    border-radius: 12px;
   }
 
   .button:hover{
-    background-color: var(--button-border-dark);
+    background-color: var(--button-border-light);
   }
 
   label{
-    position: absolute;
-    top:10px;
-    padding:20px;
     color: var(--body-text-light);
-    font-size: 16px;
-    font-weight: bold;
   }
 
   iframe {
-    border: 1px var(--body-text-dark) solid;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(172, 167, 244, 0.56);
-  }
-
-  iframe:hover{
-    transform: scale(1.02);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border: 1px var(--body-text-light) solid;
+    background-color: var(--pane-bg-light);
   }
 
   textarea::placeholder{
     color: var(--body-text-light);
-    font-style: italic;
   }
 }
 /* sources: electron documentation,
   binaryfunt / electron-seamless-titlebar-tutorial,
   */
+
+body {
+  padding: 20px;
+  overflow-y: hidden;
+}
+
+.char-count {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+button {
+  border-radius: 4px;
+}
+
+label {
+  position: absolute;
+  top:10px;
+  padding:20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+iframe {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+iframe:hover{
+  transform: scale(1.02);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+textarea::placeholder {
+   font-style: italic;
+}
 
 #header{
   position: absolute;
@@ -215,19 +246,6 @@ textarea{
   z-index: 3;
 }
 
-.char-count{
-  color: #555;
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  font-size: 11px;
-  padding: 2px 4px;
-  border-radius: 3px;
-
-}
-
 textarea:focus{
   outline: none;
-  border-color: var(--body-bg-dark);
-  box-shadow: 0 0 5px var(--body-text-light);
 }
