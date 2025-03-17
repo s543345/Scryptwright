@@ -161,8 +161,8 @@ textarea::placeholder {
 
 #header{
   position: absolute;
-  width: 99.7vw;
-  height: 7vh;
+  width: 99vw;
+  height: 5vh;
   top: 0;
   left: 1px;
   right: 1px;
@@ -179,7 +179,8 @@ textarea::placeholder {
 
 #settings{
   position:absolute;
-  top: 10px;
+  top: 8px;
+  left: 10%
 }
 
 label[for="docs"]{
@@ -192,7 +193,7 @@ label[for="docs"]{
   position: absolute;
   width: 15vw;
   height: 90vh;
-  top: 8%;
+  top: 5.67%;
   left:1px;
   z-index:2;
 }
@@ -207,7 +208,7 @@ label[for="coms"]{
   position: absolute;
   width: 15vw;
   height: 90vh;
-  top: 8%;
+  top: 5.67%;
   right:1px;
   z-index:2;
 }
