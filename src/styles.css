@@ -180,7 +180,6 @@ textarea::placeholder {
 #settings{
   position:absolute;
   top: 8px;
-  left: 10%
 }
 
 label[for="docs"]{
@@ -202,6 +201,22 @@ label[for="coms"]{
   z-index:10;
   right:0;
   top: 15%;
+}
+
+.dropdown{
+  margin: 15px;
+}
+
+.togglebtn{
+  display: none;
+  margin-top: 10px;
+  z-index: 10;
+}
+
+.novelbutton button{
+  display: block;
+  margin: 5px;
+  z-index: 10;
 }
 
 #coms{

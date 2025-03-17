@@ -24,7 +24,9 @@ function createWindow() {
 
 	mainWindow.on("ready-to-show", () => {
 		mainWindow.show();
-	});
+	})
+	mainWindow.webContents.openDevTools()
+	;
 
   ipcMain.handle('dark-mode:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
