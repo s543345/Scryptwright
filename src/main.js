@@ -1,5 +1,7 @@
-const { app, BrowserWindow, clipboard, ipcMain, nativeTheme } = require('electron/main')
+const { app, BrowserWindow, clipboard, ipcMain, nativeTheme, dialog } = require('electron/main')
 const path = require('node:path')
+const fs = require('fs');
+const { read } = require('node:fs');
 
 let settingsWindow;
 let mainWindow;
@@ -19,7 +21,7 @@ function createWindow() {
 		nodeIntegration: true
 	}
 	})
-	mainWindow.setMenuBarVisibility(false);
+	mainWindow.setMenuBarVisibility(true);  // edit for dev purposes
 	mainWindow.webContents.loadFile("index.html");
 
 	mainWindow.on("ready-to-show", () => {
@@ -73,3 +75,67 @@ function openSettings() {
 app.whenReady().then(() => createWindow());
 
 app.on("window-all-closed", () => app.quit());
+
+
+
+
+// -----------------------
+//  NOTE EDITOR FUNCTIONS
+// -----------------------
+
+// Opens a file dialog and returns the path to the file chosen.
+// Call as await window.note.selectFileDialog() via the "note" preload script
+async function selectFileDialog() {
+	console.log("[main] Opening file dialog")
+	let filePath = "noPath"
+	// Open file dialog
+	await dialog.showOpenDialog({
+		properties: ['openFIle'],
+		filters: [{ name: 'Markdown Files', extensions: ['md']}] // only show .md files
+	}).then(function (response) {
+		// Set file path from response
+		filePath = response.filePaths[0]
+	})
+	return filePath
+}
+
+// Handler function for selectFileDialog()
+ipcMain.handle('note:selectFileDialog', async (event, ...args) => {
+	const result = await selectFileDialog()
+	return result // returns a file path
+})
+
+
+
+// Read file contents from a file path
+// Call as await window.note.readFileContents() via the "note" preload script
+async function readFileContents(filePath) {
+	console.log("[main] Reading file contents at " + filePath)
+	return fs.readFileSync(filePath, {encoding: "utf-8"})
+}
+
+// Handler for readFileContents()
+ipcMain.handle("note:readFileContents", async (event, filePath) => {
+	const data = await readFileContents(filePath)
+	return data
+})
+
+
+
+// Write <data> to the file at <filePath>. Overwrites that file.
+// Call as await window.note.writeFileContents() via the "note" preload script
+async function writeFileContents(filePath, data) {
+	console.log("[main] Writing to " + filePath)
+	fs.writeFileSync(filePath, data)
+}
+
+// Handler for writeFileContents()
+ipcMain.handle("note:writeFileContents", async (event, filePath, data) => {
+	await writeFileContents(filePath, data)
+})
+
+
+
+// ---------------------------
+//  END NOTE EDITOR FUNCTIONS
+// ---------------------------
