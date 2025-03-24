@@ -8,19 +8,19 @@ let mainWindow;
 
 function createWindow() {
 	const mainWindow = new BrowserWindow({
-		height: 700,
-		minHeight: 400,
-		minWidth: 500,
-		width: 1000,
+		height: 800,
+		minHeight: 600,
+		minWidth: 800,
+		width: 1200,
 		show: false,
 		titleBarOverlay: {
 			color: '#00000000'
 		},
 	    webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
-			contextIsolation: true,
-			enableRemoteModule: false,
-			nodeIntegration: true
+			//contextIsolation: true,
+			//enableRemoteModule: false,
+			//nodeIntegration: true
 		}
 	})
 	mainWindow.setMenuBarVisibility(true);  // edit for dev purposes
