@@ -22,23 +22,28 @@
 
         <iframe id= "docs" name = "documents"></iframe>
         <label for="docs">Documents</label>
-        <div class="dropdown">
-            <button class="togglebtn">Novels</button>
-            <div id="sections" class="novelbutton"></div>
-        </div>
-
+        
         <iframe id= "coms" name = "comments"></iframe>
         <label for="coms">Notes</label>
         <textarea id="notes" rows="4" cols="5" placeholder="make a note" spellcheck = "true"></textarea>
-
     </div>
+
+    <div class="button-container">
+        <button class="button" id ="ddbtn">Novel</button>
+        <div id="dropdownbtn" class="dropdownbtns">
+            <button>Chapter 1</button>
+            <button>Chapter 2</button>
+        </div>
+    </div>
+
     <div>
         <textarea id="document" rows = "4" cols="50" placeholder="type away!"
                   spellcheck = "true" autocapitalize = "sentences"></textarea>
         <span class="char-count" id="charnum">0 characters</span>
     </div>
 
-    <script src="renderer.js"></script>
     <script src="note.js"></script>
+    <script src="renderer.js" defer></script>
+
 </body>
 </html>

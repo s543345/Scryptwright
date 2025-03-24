@@ -16,10 +16,12 @@ function createWindow() {
 		titleBarOverlay: {
 			color: '#00000000'
 		},
-    webPreferences: {
-		preload: path.join(__dirname, 'preload.js'),
-		nodeIntegration: true
-	}
+	    webPreferences: {
+			preload: path.join(__dirname, 'preload.js'),
+			contextIsolation: true,
+			enableRemoteModule: false,
+			nodeIntegration: true
+		}
 	})
 	mainWindow.setMenuBarVisibility(true);  // edit for dev purposes
 	mainWindow.webContents.loadFile("index.html");
