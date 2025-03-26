@@ -148,10 +148,11 @@ label {
 
 iframe {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: .75;
 }
 
 iframe:hover{
-  transform: scale(1.02);
+  transform: scale(1.01);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -161,7 +162,7 @@ textarea::placeholder {
 
 #header{
   position: absolute;
-  width: 99.6vw;
+  width: 99.7vw;
   height: 5vh;
   top: 0;
   left: 1px;
@@ -186,7 +187,7 @@ textarea::placeholder {
   position: absolute;
   width: 15vw;
   height: 90vh;
-  top: 5.67%;
+  top: 5.4%;
   left:1px;
   z-index:2;
 }
@@ -248,7 +249,7 @@ label[for="coms"]{
   position: absolute;
   width: 15vw;
   height: 90vh;
-  top: 5.67%;
+  top: 5.4%;
   right:1px;
   z-index:2;
 }
@@ -270,6 +271,7 @@ label[for="coms"]{
   justify-content: center;
   align-items: center;
   height: 200vh;
+  
 }
 
 textarea{
@@ -285,11 +287,11 @@ textarea{
 #document{
   padding: 40px;
   margin: 10px auto;
-  top: 50%;
+  top: 49.5%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 80vh;
+  width: 69vw; /*nice*/
+  height: 90vh;
 }
 
 textarea:focus{
