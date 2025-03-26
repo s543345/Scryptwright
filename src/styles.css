@@ -148,7 +148,7 @@ label {
 
 iframe {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  opacity: .75;
+  opacity: .7;
 }
 
 iframe:hover{
@@ -178,10 +178,34 @@ textarea::placeholder {
   z-index: 3;
 }
 
-#settings{
+/*#settings{
   position:absolute;
   top: 10px;
 }
+
+#document-save{
+  position:absolute;
+  top: 10px;
+  left: 10px;
+}
+}
+#document-load{
+  position:absolute;
+  top: 10px;
+  left:50px;
+}
+
+#document-select-read{
+  position:absolute;
+  top: 10px;
+  left:20px;
+}
+
+#document-select-write{
+  position:absolute;
+  top: 10px;
+}*/
+
 
 #docs{
   position: absolute;
