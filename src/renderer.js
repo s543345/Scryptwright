@@ -62,13 +62,13 @@ function openSettings(){
 }
 
 // dropdown button
-document.getElementById('ddbtn').addEventListener('click', function() {
-    const drop = document.getElementById('dropdownbtn');
+//document.getElementById('ddbtn').addEventListener('click', function() {
+//    const drop = document.getElementById('dropdownbtn');
 
-    if(drop.style.display === 'none' || drop.style.display === "") {
-        drop.style.display = 'block';
-    }
-    else{
-      drop.style.display = 'none'; //hide
-    }
-});
+//    if(drop.style.display === 'none' || drop.style.display === "") {
+//        drop.style.display = 'block';
+//    }
+//    else{
+//      drop.style.display = 'none'; //hide
+//    }
+//});
