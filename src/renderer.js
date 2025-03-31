@@ -1,12 +1,12 @@
-//document.getElementById('toggle-dark-mode').addEventListener('click', async () =>
-//  const isDarkMode = await window.darkMode.toggle()
-//  document.getElementById('theme-source').innerHTML = isDarkMode ? 'Dark' : 'Light'
-//})
+document.getElementById('toggle-dark-mode').addEventListener('click', async () => {
+  const isDarkMode = await window.darkMode.toggle()
+  document.getElementById('theme-source').innerHTML = isDarkMode ? 'Dark' : 'Light'
+})
 
-//document.getElementById('reset-to-system').addEventListener('click', async () => {
-//  await window.darkMode.system()
-//  document.getElementById('theme-source').innerHTML = 'System'
-//})
+document.getElementById('reset-to-system').addEventListener('click', async () => {
+  await window.darkMode.system()
+  document.getElementById('theme-source').innerHTML = 'System'
+})
 
 //frame size adjust to the window size
 const hdfr = document.getElementById('header')
@@ -62,13 +62,13 @@ function openSettings(){
 }
 
 // dropdown button
-document.getElementById('ddbtn').addEventListener('click', function() {
-    const drop = document.getElementById('dropdownbtn');
+//document.getElementById('ddbtn').addEventListener('click', function() {
+//    const drop = document.getElementById('dropdownbtn');
 
-    if(drop.style.display === 'none' || drop.style.display === "") {
-        drop.style.display = 'block';
-    }
-    else{
-      drop.style.display = 'none'; //hide
-    }
-});
+//    if(drop.style.display === 'none' || drop.style.display === "") {
+//        drop.style.display = 'block';
+//    }
+//    else{
+//      drop.style.display = 'none'; //hide
+//    }
+//});
