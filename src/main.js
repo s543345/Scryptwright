@@ -1,4 +1,4 @@
-const { app, BrowserWindow, clipboard, ipcMain, nativeTheme, dialog } = require('electron/main')
+const { app, BrowserWindow, clipboard, ipcMain, nativeTheme, dialog, ipcRenderer } = require('electron/main')
 const path = require('node:path')
 const fs = require('fs');
 const { read } = require('node:fs');
@@ -80,8 +80,35 @@ app.whenReady().then(() => createWindow());
 
 app.on("window-all-closed", () => app.quit());
 
+// Get user's Documents directory
+ipcMain.handle("get-documents-path", async () => {
+  return path.join(os.homedir(), "Documents");
+});
 
+// Fetch files and folders
+ipcMain.handle("get-file-system", async (_, dirPath) => {
+  try {
+	if (!fs.existsSync(dirPath)) return { error: "Directory does not exist." };
 
+	const files = fs.readdirSync(dirPath);
+	return files
+	  .map(file => {
+		try {
+		  const filePath = path.join(dirPath, file);
+		  return {
+			name: file,
+			path: filePath,
+			isDirectory: fs.statSync(filePath).isDirectory()
+		  };
+		} catch (error) {
+		  return null;
+		}
+	  })
+	  .filter(file => file !== null);
+  } catch (error) {
+	return { error: "Failed to retrieve file system: " + error.message };
+  }
+});
 
 // -----------------------
 //  NOTE EDITOR FUNCTIONS

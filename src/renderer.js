@@ -62,7 +62,7 @@ function openSettings(){
 }
 
 // dropdown button
-document.getElementById('ddbtn').addEventListener('click', function() {
+/*document.getElementById('ddbtn').addEventListener('click', function() {
     const drop = document.getElementById('dropdownbtn');
 
     if(drop.style.display === 'none' || drop.style.display === "") {
@@ -71,4 +71,4 @@ document.getElementById('ddbtn').addEventListener('click', function() {
     else{
       drop.style.display = 'none'; //hide
     }
-});
+});*/

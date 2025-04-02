@@ -28,8 +28,6 @@ async function requestFilePath(which_path) {
     await updateFilePath(filePath, which_path)
 }
 
-
-
 // Updates pathToCurrentNote or pathToTargetNote with <filePath>.
 // <which_path> (string):
 // - "current": Updates pathToCurrentNote
@@ -51,7 +49,6 @@ async function displayContentsToEditor(data) {
   document.getElementById("document").value = data
 }
 
-
 // Reads the file from a given file path and returns its contents.
 // <filePath> (String): The file path to read from. Usually is called as the value of <pathToTargetNote>.
 async function readContentsOfFile(filePath) {
@@ -59,7 +56,6 @@ async function readContentsOfFile(filePath) {
     const data = await window.note.readFileContents(filePath)
     return data
 }
-
 
 // Writes whatever is in the editor to <pathToCurrentNote>. Only handles the write operation.
 // Use saveNote() if you're calling this from outside note.js!
@@ -74,7 +70,6 @@ async function writeContentsToFile() {
     await window.note.writeFileContents(pathToCurrentNote, data)
 }
 
-
 // Primary function to save the contents of the editor to a file.
 // If no <filePath> is specified, saves to <pathToCurrentNote>.
 async function saveNote(filePath = null) {
@@ -85,7 +80,6 @@ async function saveNote(filePath = null) {
         writeContentsToFile(pathToCurrentNote)
     }
 }
-
 
 // Loads a note to the editor.
 // Automatically saves the current file!
@@ -144,6 +138,23 @@ function buildFileTree(container, files) {
 
     container.appendChild(li);
   });
+}
+
+// Change directory
+function changeDirectory() {
+    const newPath = document.getElementById("directoryPath").value.trim();
+    if (!newPath) return alert("Please enter a valid directory path.");
+    loadFileSystem(newPath);
+  }
+  
+async function loadFileSystem(dirPath) {
+    const files = await ipcRenderer.invoke("get-file-system", dirPath);
+    if (files.error) return alert("Error: " + files.error);
+  
+    document.getElementById("directoryPath").value = dirPath;
+    const fileTree = document.getElementById("fileTree");
+    fileTree.innerHTML = "";
+    buildFileTree(fileTree, files);
 }
 
 // Add listeners on test buttons for demonstration purposes

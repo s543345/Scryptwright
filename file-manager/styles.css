@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+/* Container for Sidebar + Editor */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar (File Tree) */
+.sidebar {
+    width: 25%;
+    background: #f4f4f4;
+    padding: 10px;
+    overflow-y: auto;
+    border-right: 2px solid #ccc;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+/* File Tree */
+#fileTree {
+    list-style-type: none;
+    padding: 0;
+}
+
+#fileTree li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#fileTree li:hover {
+    background: #ddd;
+}
+
+/* Text Editor */
+.editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.editor h3 {
+    margin-top: 0;
+}
+
+#fileContent {
+    flex: 1;
+    width: 100%;
+    height: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+button {
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #0056b3;
+}
