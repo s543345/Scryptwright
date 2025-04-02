@@ -112,6 +112,39 @@ async function openNote(filePath = null, save_first = true) {
     displayContentsToEditor(data)
 }
 
+//File Tree Function
+function buildFileTree(container, files) {
+  files.forEach(file => {
+    const li = document.createElement("li");
+    li.textContent = file.name;
+    li.className = file.isDirectory ? "folder" : "file";
+
+    if (file.isDirectory) {
+      // Folder click event
+      const ul = document.createElement("ul");
+      ul.style.display = "none";
+
+      li.onclick = async (event) => {
+        event.stopPropagation();
+        if (ul.children.length === 0) {
+          const subFiles = await ipcRenderer.invoke("get-file-system", file.path);
+          if (!subFiles.error) buildFileTree(ul, subFiles);
+        }
+        ul.style.display = ul.style.display === "none" ? "block" : "none";
+      };
+
+      li.appendChild(ul);
+    } else if (file.name.endsWith(".md")) {
+      // Text file click event
+      li.onclick = async (event) => {
+        event.stopPropagation();
+        await openNote(file.path);
+      };
+    }
+
+    container.appendChild(li);
+  });
+}
 
 // Add listeners on test buttons for demonstration purposes
 // Please note: these buttons should not exist. This is only to demonstrate the functionality while the document outline feature is in progress.
