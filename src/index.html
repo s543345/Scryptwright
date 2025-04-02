@@ -22,11 +22,13 @@
 
         <iframe id= "docs" name = "documents"></iframe>
         <label for="docs">Documents</label>
-        
-        <!--<h3>File Explorer</h3>
+
+        <div class="sidebar">
+            <h3></h3>
             <input type="text" id="directoryPath" placeholder="Enter directory path">
-            <button onclick="changeDirectory()">Load</button>
-            <ul id="fileTree"></ul>-->
+            <button onclick="selectFileDialog()">Load</button>
+            <ul id="fileTree"></ul>
+        </div>
 
         <iframe id= "coms" name = "comments"></iframe>
         <label for="coms">Notes</label>
@@ -35,13 +37,13 @@
 
     <hr class='line' id = 'line'>
     
-    <div class="button-container">
+    <!--<div class="button-container">
         <button class="button" id ="ddbtn">Novel</button>
         <div id="dropdownbtn" class="dropdownbtns">
             <button>Chapter 1</button>
             <button>Chapter 2</button>
         </div>
-    </div>
+    </div>-->
 
     <div>
         <textarea id="document" rows = "4" cols="50" placeholder="type away!"
