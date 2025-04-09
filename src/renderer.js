@@ -1,11 +1,21 @@
-document.getElementById('toggle-dark-mode').addEventListener('click', async () => {
-  const isDarkMode = await window.darkMode.toggle()
-  document.getElementById('theme-source').innerHTML = isDarkMode ? 'Dark' : 'Light'
-})
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('toggle-dark-mode')
+  const resetBtn = document.getElementById('reset-to-system')
+  const themeLabel = document.getElementById('theme-source')
 
-document.getElementById('reset-to-system').addEventListener('click', async () => {
-  await window.darkMode.system()
-  document.getElementById('theme-source').innerHTML = 'System'
+  if (toggleBtn && themeLabel) {
+    toggleBtn.addEventListener('click', async () => {
+      const isDarkMode = await window.darkMode.toggle()
+      themeLabel.innerHTML = isDarkMode ? 'Dark' : 'Light'
+    })
+  }
+
+  if (resetBtn && themeLabel) {
+    resetBtn.addEventListener('click', async () => {
+      await window.darkMode.system()
+      themeLabel.innerHTML = 'System'
+    })
+  }
 })
 
 //frame size adjust to the window size
