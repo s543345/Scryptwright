@@ -1,4 +1,9 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
+const os = require('os');
+
+contextBridge.exposeInMainWorld("os", {
+  homedir: () => os.homedir()
+});
 
 contextBridge.exposeInMainWorld('darkMode', {
   toggle: () => ipcRenderer.invoke('dark-mode:toggle'),
@@ -13,3 +18,9 @@ contextBridge.exposeInMainWorld(
     writeFileContents: (filePath, data) => {return ipcRenderer.invoke('note:writeFileContents', filePath, data)}
   }
 )
+
+contextBridge.exposeInMainWorld("fileTree", {
+  readDir: (dirPath) => ipcRenderer.invoke('filetree:readDir', dirPath),
+  createFolder: (folderPath) => ipcRenderer.invoke('filetree:createFolder', folderPath),
+  createFile: (filePath, content) => ipcRenderer.invoke('filetree:createFile', filePath, content)
+});
