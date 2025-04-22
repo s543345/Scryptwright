@@ -2,6 +2,7 @@ const { app, BrowserWindow, clipboard, ipcMain, nativeTheme, dialog } = require(
 const path = require('node:path')
 const fs = require('fs');
 const { read } = require('node:fs');
+const os = require("os");
 
 let settingsWindow;
 let mainWindow;
@@ -138,7 +139,30 @@ ipcMain.handle("note:writeFileContents", async (event, filePath, data) => {
 	await writeFileContents(filePath, data)
 })
 
+// Fetch files and folders
+ipcMain.handle("get-file-system", async (_, dirPath) => {
+  try {
+    if (!fs.existsSync(dirPath)) return { error: "Directory does not exist." };
 
+    const files = fs.readdirSync(dirPath);
+    return files
+      .map(file => {
+        try {
+          const filePath = path.join(dirPath, file);
+          return {
+            name: file,
+            path: filePath,
+            isDirectory: fs.statSync(filePath).isDirectory()
+          };
+        } catch (error) {
+          return null;
+        }
+      })
+      .filter(file => file !== null);
+  } catch (error) {
+    return { error: "Failed to retrieve file system: " + error.message };
+  }
+});
 
 // ---------------------------
 //  END NOTE EDITOR FUNCTIONS

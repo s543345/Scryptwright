@@ -13,3 +13,16 @@ contextBridge.exposeInMainWorld(
     writeFileContents: (filePath, data) => {return ipcRenderer.invoke('note:writeFileContents', filePath, data)}
   }
 )
+
+contextBridge.exposeInMainWorld(
+  "renderer", {
+    loadFileSystem: (dirPath) => {return ipcRenderer.invoke('renderer:loadFileSystem')}, // calls loadFileSystem()
+    changeDirectory: () => {return ipcRenderer.invoke('renderer:changeDirectory')}, // calls changeDirectory()
+    buildFileTree: (container, files) => {return ipcRenderer.invoke('renderer:buildFileTree', container, files)}
+  }
+)
+
+contextBridge.exposeInMainWorld('fsApi', {
+  getFileSystem: (dirPath) => ipcRenderer.invoke('get-file-system', dirPath),
+  getDocumentsPath: () => ipcRenderer.invoke('get-documents-path')
+});
