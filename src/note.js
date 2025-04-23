@@ -44,7 +44,7 @@ async function newFilePath(which_path){
     let filePath = await window.note.selectFileDialog() // calls selectFileDialog()
     await updateFilePath(filePath, which_path)
     //await openNote(filePath, true)
-    let rcf = await readContentsOfFile(pathToCurrentNote)
+    let rcf = await readContentsOfFile(pathToTargetNote)
     await displayContentsToEditor(rcf)
 }
 
@@ -81,26 +81,27 @@ async function readContentsOfFile(filePath) {
 // Use saveNote() if you're calling this from outside note.js!
 async function writeContentsToFile() {
     // If no note is loaded, requests a file path
-    if (pathToCurrentNote == null) {
+    if (pathToCurrentNote==null) {
         await loadNote("current")
     }
-    /*if (pathToTargetNote){
-        await newFilePath("target")
-    }*/
 
-    // Write whatever is in the document viewer to file at <pathToCurrentNote>
     console.log("[note] Sending request to overwrite file contents at " + pathToCurrentNote)
     const data = document.getElementById("document").value
     await window.note.writeFileContents(pathToCurrentNote, data)
+
+    /*if (pathToTargetNote==null){
+        await newFilePath("target");
+        console.log("[note] Sending request to overwrite file contents at " + pathToTargetNote)
+        const data = document.getElementById("document").value
+        await window.note.writeFileContents(pathToTargetNote, data)
+    }*/
+
+    // Write whatever is in the document viewer to file at <pathToCurrentNote>
 }
 
 async function saveAsNote(filePath = null){
-    if (filePath != null) {
-        pathToTargetNote = filePath
-        writeContentsToFile(pathToTargetNote)
-    } else {
-        writeContentsToFile(pathToTargetNote)
-    }
+    var fp = requestFilePath()
+    saveNote(fp)
 }
 
 // Primary function to save the contents of the editor to a file.
@@ -142,7 +143,7 @@ async function openNote(filePath = null, save_first = true) {
 
 // Add listeners on test buttons for demonstration purposes
 // Please note: these buttons should not exist. This is only to demonstrate the functionality while the document outline feature is in progress.
-document.getElementById('document-load').addEventListener('click', function () {loadNote("target")})
+document.getElementById('document-load').addEventListener('click', function () {loadNote("current")})
 document.getElementById('document-select-write').addEventListener('click', function () {saveAsNote()})
 document.getElementById('document-save').addEventListener('click', function () {saveNote()})
 //document.getElementById('document-select-read').addEventListener('click', function () {openNote(null, save_first = false)})
