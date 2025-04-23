@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
-const os = require('os');
+//const os = require('os');
 
 contextBridge.exposeInMainWorld("os", {
   homedir: () => os.homedir()
