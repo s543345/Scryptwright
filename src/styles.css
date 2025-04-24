@@ -183,6 +183,27 @@ iframe:hover{
 /*#settings{
   position:absolute;
   top: 10px;
+  left: -18px;
+}
+
+#document-load{
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  width: 75px;
+}
+
+#document-save{
+  position: absolute;
+  top: 10px;
+  left: 130px;
+}
+
+#document-save-as{
+  position: absolute;
+  top: 10px;
+  left: 178px;
+  width: 75px;
 }
 
 #document-save{
@@ -240,6 +261,19 @@ iframe:hover{
   z-index:2;
 }
 
+.sidebar {
+  position: absolute;
+  width: 15vw;
+  height: 90vh;
+  top: 5.67%;
+  left:1px;
+  z-index:4
+}
+
+.sidebar h3{
+  height: 10px;
+}
+
 #line{
   width: 100%;
   height: 2px;
@@ -250,7 +284,7 @@ iframe:hover{
   
 }
 
-.button-container{
+/*.button-container{
   text-align: left;
   position: absolute;
   display: inline-block;
@@ -271,7 +305,7 @@ iframe:hover{
   margin: 5px 0;
   padding: 10px;
   cursor: pointer;
-}
+}*/
 
 label[for="docs"]{
   z-index:10;

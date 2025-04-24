@@ -1,4 +1,4 @@
-const { app, BrowserWindow, clipboard, ipcMain, nativeTheme, dialog } = require('electron/main')
+const { app, BrowserWindow, clipboard, ipcMain, nativeTheme, dialog, ipcRenderer } = require('electron/main')
 const path = require('node:path')
 const fs = require('fs');
 const { read } = require('node:fs');
@@ -10,8 +10,8 @@ let mainWindow;
 function createWindow() {
 	const mainWindow = new BrowserWindow({
 		height: 800,
-		minHeight: 600,
-		minWidth: 800,
+		minHeight: 800,
+		minWidth: 1000,
 		width: 1200,
 		show: false,
 		titleBarOverlay: {
@@ -81,12 +81,36 @@ app.whenReady().then(() => createWindow());
 
 app.on("window-all-closed", () => app.quit());
 
-
-
+ipcMain.handle('filetree:readDir', async (event, dirPath) => {
+	try {
+	  const items = await fs.promises.readdir(dirPath, { withFileTypes: true });
+	  // Return a simple array of items with their names and a flag for directories
+	  return items.map(item => ({ name: item.name, isDirectory: item.isDirectory() }));
+	} catch (err) {
+	  console.error("Error reading directory:", err);
+	  return [];
+	}
+  });
 
 // -----------------------
 //  NOTE EDITOR FUNCTIONS
 // -----------------------
+
+//create a file
+async function createFile(){
+	console.log("[mail] Opening file dialog to create a new file")
+	const {canceled, filePath} = await dialog.showSaveDialog({
+		title: 'Create a new file',
+		defaultPath: 'untitled.md',
+		filters: [{ name: 'Markdown Files', extensions: ['.md'] }]
+	});
+	return canceled ? null : filePath
+}
+
+//Handler function for createFile()
+ipcMain.handle('note:createFile', async (event, args) => {
+	return await createFile();
+})
 
 // Opens a file dialog and returns the path to the file chosen.
 // Call as await window.note.selectFileDialog() via the "note" preload script
@@ -106,8 +130,7 @@ async function selectFileDialog() {
 
 // Handler function for selectFileDialog()
 ipcMain.handle('note:selectFileDialog', async (event, ...args) => {
-	const result = await selectFileDialog()
-	return result // returns a file path
+	return await selectFileDialog() //returns filepath
 })
 
 
@@ -121,8 +144,7 @@ async function readFileContents(filePath) {
 
 // Handler for readFileContents()
 ipcMain.handle("note:readFileContents", async (event, filePath) => {
-	const data = await readFileContents(filePath)
-	return data
+	return await readFileContents(filePath)
 })
 
 

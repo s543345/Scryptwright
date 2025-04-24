@@ -11,20 +11,33 @@
     <div class="shadow"></div>
     <div class="header-content">
         <button class="button" id="settings" onclick="darkMode.openSettings()">Settings</button>
-        <button class="button" id="document-save">Save Chapter</button>
-        <button class="button" id="document-load">Load Chapter (temp)</button>
-        <button class="button" id="document-select-read">Select File to Open</button>
-        <button class="button" id="document-select-write">Select File to Save To</button>
+        <button class="button" id="document-save">Save</button>
+        <button class="button" id="document-load">Open File</button>
+       <!-- <button class="button" id="document-select-read">Select File to Open</button>-->
+        <button class="button" id="document-save-as">Save as</button>
     </div>
     <div class="frameContainer">
         <iframe id="header" name = "topframe"></iframe>
 
+<<<<<<< HEAD
         <div class="sidebar">
             <h3>File Explorer</h3>
             <input type="text" id="directoryPath" placeholder="Enter directory path">
             <button onclick="changeDirectory()">Load</button>
              <ul id="fileTree"></ul>
          </div>
+=======
+        <iframe id= "docs" name = "documents"></iframe>
+        <label for="docs">Documents</label>
+
+        <div class="sidebar">
+            <h3></h3>
+            <input type="text" id="directoryPath" placeholder="Enter directory path">
+            <button onclick="changeDirectory()">Load</button>
+            <ul id="fileTree"></ul>
+        </div>
+
+>>>>>>> Evan-Test
         <iframe id= "coms" name = "comments"></iframe>
         <label for="coms">Notes</label>
 

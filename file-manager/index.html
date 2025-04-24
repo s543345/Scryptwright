@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar: File Tree -->
+        <div class="sidebar">
+            <h3>File Explorer</h3>
+            <input type="text" id="directoryPath" placeholder="Enter directory path">
+            <button onclick="changeDirectory()">Load</button>
+            <ul id="fileTree"></ul>
+        </div>
+
+        <!-- Main Content: Text Editor -->
+        <div class="editor">
+            <h3 id="fileName">No file selected</h3>
+            <textarea id="fileContent" placeholder="Select a file to edit..."></textarea>
+            <button onclick="saveFile()">Save Changes</button>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

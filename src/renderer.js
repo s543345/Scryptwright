@@ -72,8 +72,13 @@ function openSettings(){
 }
 
 // dropdown button
+<<<<<<< HEAD
 //document.getElementById('ddbtn').addEventListener('click', function() {
 //    const drop = document.getElementById('dropdownbtn');
+=======
+/*document.getElementById('ddbtn').addEventListener('click', function() {
+    const drop = document.getElementById('dropdownbtn');
+>>>>>>> Evan-Test
 
 //    if(drop.style.display === 'none' || drop.style.display === "") {
 //        drop.style.display = 'block';
@@ -122,6 +127,7 @@ function buildFileTree(container, files) {
         await openFile(file.path);
       };
     }
+<<<<<<< HEAD
 
     container.appendChild(li);
   });
@@ -143,3 +149,59 @@ window.onload = async () => {
 window.changeDirectory = changeDirectory;
 window.saveFile = saveFile;
 
+=======
+    else{
+      drop.style.display = 'none'; //hide
+    }
+});*/
+
+// A recursive function to build a file tree list
+async function buildFileTree(directoryPath, container) {
+  // Fetch the directory items using your IPC-exposed function
+  const items = await window.fileTree.readDir(directoryPath);
+  
+  const ul = document.createElement('ul');
+  
+  items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.name;
+    
+    // When a directory is clicked, expand it
+    li.addEventListener('click', async (e) => {
+      // Prevent click event from propagating to parent elements
+      e.stopPropagation();
+      
+      if (item.isDirectory) {
+        // Toggle expand/collapse
+        const existingUl = li.querySelector('ul');
+        if (existingUl) {
+          li.removeChild(existingUl);
+        } else {
+          const subDirPath = path.join(directoryPath, item.name);
+          await buildFileTree(subDirPath, li);
+        }
+      } else {
+        // For files, you may load content into the editor
+        const filePath = path.join(directoryPath, item.name);
+        // Example: load file contents (using your note.readFileContents)
+        const content = await window.note.readFileContents(filePath);
+        document.getElementById('document').value = content;
+      }
+    });
+    
+    ul.appendChild(li);
+  });
+  
+  container.appendChild(ul);
+}
+
+// On DOM load, build the file tree in the sidebar
+document.addEventListener('DOMContentLoaded', async () => {
+  const sidebar = document.getElementById('sidebar');
+  // Use a starting directory (for example, the user's home directory):
+  const os = require('os');
+  const initialDir = window.os.homedir();
+  
+  buildFileTree(initialDir, sidebar);
+});
+>>>>>>> Evan-Test
