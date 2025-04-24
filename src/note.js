@@ -58,7 +58,7 @@ async function changeFilePath(which_path,filePath= null){
     }
     await updateFilePath(filePath, which_path)
     let rcf = await readContentsOfFile(pathToCurrentNote)
-    copyContents(pathToTargetNote,rcf)
+    await copyContents(pathToTargetNote,rcf)
     let rtn = await readContentsOfFile(pathToTargetNote)
     await displayContentsToEditor(rtn)
 }

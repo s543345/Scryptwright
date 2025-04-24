@@ -20,7 +20,7 @@ contextBridge.exposeInMainWorld(
   }
 )
 
-<<<<<<< HEAD
+
 contextBridge.exposeInMainWorld(
   "renderer", {
     loadFileSystem: (dirPath) => {return ipcRenderer.invoke('renderer:loadFileSystem')}, // calls loadFileSystem()
@@ -33,10 +33,10 @@ contextBridge.exposeInMainWorld('fsApi', {
   getFileSystem: (dirPath) => ipcRenderer.invoke('get-file-system', dirPath),
   getDocumentsPath: () => ipcRenderer.invoke('get-documents-path')
 });
-=======
+
 contextBridge.exposeInMainWorld("fileTree", {
   readDir: (dirPath) => ipcRenderer.invoke('filetree:readDir', dirPath),
   createFolder: (folderPath) => ipcRenderer.invoke('filetree:createFolder', folderPath),
   createFile: (filePath, content) => ipcRenderer.invoke('filetree:createFile', filePath, content)
 });
->>>>>>> Evan-Test
+

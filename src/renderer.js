@@ -72,7 +72,7 @@ function openSettings(){
 }
 
 // dropdown button
-<<<<<<< HEAD
+/* HEAD
 //document.getElementById('ddbtn').addEventListener('click', function() {
 //    const drop = document.getElementById('dropdownbtn');
 =======
@@ -86,7 +86,7 @@ function openSettings(){
 //    else{
 //      drop.style.display = 'none'; //hide
 //    }
-//});
+//});*/
 
 let currentFilePath = ""; // Store the opened file path
 
@@ -127,11 +127,12 @@ function buildFileTree(container, files) {
         await openFile(file.path);
       };
     }
-<<<<<<< HEAD
-
-    container.appendChild(li);
   });
 }
+
+/*<<<<<<< HEAD
+
+    container.appendChild(li);*/
 
 // Change directory
 function changeDirectory() {
@@ -149,8 +150,7 @@ window.onload = async () => {
 window.changeDirectory = changeDirectory;
 window.saveFile = saveFile;
 
-=======
-    else{
+   /* else{
       drop.style.display = 'none'; //hide
     }
 });*/
@@ -204,4 +204,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   buildFileTree(initialDir, sidebar);
 });
->>>>>>> Evan-Test
+
