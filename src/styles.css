@@ -182,6 +182,27 @@ iframe:hover{
 #settings{
   position:absolute;
   top: 10px;
+  left: -18px;
+}
+
+#document-load{
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  width: 75px;
+}
+
+#document-save{
+  position: absolute;
+  top: 10px;
+  left: 130px;
+}
+
+#document-save-as{
+  position: absolute;
+  top: 10px;
+  left: 178px;
+  width: 75px;
 }
 
 #docs{
