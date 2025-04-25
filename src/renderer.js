@@ -145,7 +145,7 @@ function changeDirectory() {
 window.onload = async () => {
   const documentsPath = await window.fsApi.getDocumentsPath();
   loadFileSystem(documentsPath);
-};
+}
 
 window.changeDirectory = changeDirectory;
 window.saveFile = saveFile;
@@ -192,7 +192,7 @@ async function buildFileTree(directoryPath, container) {
     ul.appendChild(li);
   });
   
-  container.appendChild(ul);
+  //container.appendChild(ul);
 }
 
 // On DOM load, build the file tree in the sidebar

@@ -90,7 +90,7 @@ ipcMain.handle('filetree:readDir', async (event, dirPath) => {
 	  console.error("Error reading directory:", err);
 	  return [];
 	}
-  });
+});
 
 // -----------------------
 //  NOTE EDITOR FUNCTIONS

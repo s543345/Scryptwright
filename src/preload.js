@@ -5,7 +5,7 @@ contextBridge.exposeInMainWorld("os", {
   homedir: () => os.homedir()
 });
 
-contextBridge.exposeInMainWorld('darkMode', {
+contextBridge.exposeInMainWorld("darkMode", {
   toggle: () => ipcRenderer.invoke('dark-mode:toggle'),
   system: () => ipcRenderer.invoke('dark-mode:system'),
   openSettings: () => ipcRenderer.send('open-settings')
@@ -20,7 +20,6 @@ contextBridge.exposeInMainWorld(
   }
 )
 
-
 contextBridge.exposeInMainWorld(
   "renderer", {
     loadFileSystem: (dirPath) => {return ipcRenderer.invoke('renderer:loadFileSystem')}, // calls loadFileSystem()
@@ -29,14 +28,14 @@ contextBridge.exposeInMainWorld(
   }
 )
 
-contextBridge.exposeInMainWorld('fsApi', {
-  getFileSystem: (dirPath) => ipcRenderer.invoke('get-file-system', dirPath),
-  getDocumentsPath: () => ipcRenderer.invoke('get-documents-path')
-});
+contextBridge.exposeInMainWorld("fsApi", {
+  getFileSystem: (dirPath) => {return ipcRenderer.invoke('get-file-system', dirPath)},
+  getDocumentsPath: () => {return ipcRenderer.invoke('get-documents-path')}
+})
 
 contextBridge.exposeInMainWorld("fileTree", {
-  readDir: (dirPath) => ipcRenderer.invoke('filetree:readDir', dirPath),
-  createFolder: (folderPath) => ipcRenderer.invoke('filetree:createFolder', folderPath),
-  createFile: (filePath, content) => ipcRenderer.invoke('filetree:createFile', filePath, content)
+  readDir: (dirPath) => {return ipcRenderer.invoke('filetree:readDir', dirPath)},
+  createFolder: (folderPath) => {return ipcRenderer.invoke('filetree:createFolder', folderPath)},
+  createFile: (filePath, content) => {return ipcRenderer.invoke('filetree:createFile', filePath, content)}
 });
 

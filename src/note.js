@@ -52,7 +52,7 @@ async function requestFilePath(which_path){
 async function changeFilePath(which_path,filePath= null){
     // Get file path from file select dialog in [main]
     console.log("[note-editor] Opening a file dialog...")
-    if(!filePath){
+    if(filePath != null){
         filePath = await window.note.selectFileDialog()
         if (!filePath) {return}
     }
