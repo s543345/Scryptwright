@@ -206,7 +206,7 @@ iframe:hover{
   width: 75px;
 }
 
-.sidebar {
+/*.sidebar {
   position: absolute;
   width: 15vw;
   height: 90vh;
@@ -219,7 +219,7 @@ iframe:hover{
   height: 10px;
 }
 
-/*.button-container{
+.button-container{
   text-align: left;
   position: absolute;
   display: inline-block;

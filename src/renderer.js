@@ -101,7 +101,7 @@ async function loadFileSystem(dirPath) {
 
 function buildFileTree(container, files) {
   files.forEach(file => {
-    const li = document.createElement("li");
+    const li = document.createElement("button");
     li.textContent = file.name;
     li.className = file.isDirectory ? "folder" : "file";
 
@@ -126,13 +126,12 @@ function buildFileTree(container, files) {
         event.stopPropagation();
         await openFile(file.path);
       };
-    }
+    }container.appendChild(li);
   });
 }
 
 /*<<<<<<< HEAD
-
-    container.appendChild(li);*/
+*/
 
 // Change directory
 function changeDirectory() {
@@ -150,13 +149,8 @@ window.onload = async () => {
 window.changeDirectory = changeDirectory;
 window.saveFile = saveFile;
 
-   /* else{
-      drop.style.display = 'none'; //hide
-    }
-});*/
-
 // A recursive function to build a file tree list
-async function buildFileTree(directoryPath, container) {
+/*async function buildFileTree(directoryPath, container) {
   // Fetch the directory items using your IPC-exposed function
   const items = await window.fileTree.readDir(directoryPath);
   
@@ -193,7 +187,7 @@ async function buildFileTree(directoryPath, container) {
   });
   
   //container.appendChild(ul);
-}
+}*/
 
 // On DOM load, build the file tree in the sidebar
 document.addEventListener('DOMContentLoaded', async () => {

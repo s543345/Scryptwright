@@ -37,6 +37,7 @@ async function loadNote(which_path) {
     // Get file path from file select dialog in [main]
     console.log("[note-editor] Opening a file dialog...")
     let filePath = await window.note.selectFileDialog() // calls selectFileDialog()
+        if(!filePath) {return null}
     await updateFilePath(filePath, which_path)
     //await openNote(filePath, true)
     let rcf = await readContentsOfFile(pathToCurrentNote)
