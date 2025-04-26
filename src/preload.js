@@ -20,6 +20,17 @@ contextBridge.exposeInMainWorld(
   }
 )
 
+let autosvchk = false
+
+ipcRenderer.on('autosave-update',(event,value)=>{
+    autosvchk = value
+})
+
+contextBridge.exposeInMainWorld('autosave',{
+    toggle: (value) => ipcRenderer.invoke('auto-save:toggle',value),
+    check: () => autosvchk
+})
+
 contextBridge.exposeInMainWorld(
   "renderer", {
     loadFileSystem: (dirPath) => {return ipcRenderer.invoke('renderer:loadFileSystem')}, // calls loadFileSystem()

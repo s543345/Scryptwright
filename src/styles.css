@@ -121,6 +121,7 @@
   binaryfunt / electron-seamless-titlebar-tutorial,
   */
 
+/* main tags/structure */
 body {
   padding: 20px;
   overflow-y: hidden;
@@ -162,6 +163,8 @@ iframe:hover{
 /*   font-style: italic;*/
 /*}*/
 
+/* Application sections */
+
 #header{
   position: absolute;
   width: 99.7vw;
@@ -184,6 +187,83 @@ iframe:hover{
   position:absolute;
   top: 10px;
   left: -18px;
+}
+
+/*Auto Save*/
+.toggle-switch{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.switch{
+  position: relative;
+  display: flex;
+  align-items: center;
+  left: 10px;
+  width: 120px;
+  height: 20px;
+}
+
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.slider {
+  position: relative;
+  cursor: pointer;
+  height: 20px;
+  width: 60px;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.slider::before{
+  position: absolute;
+  content: '';
+  height: 15px;
+  width: 15px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.slider::after{
+  position: absolute;
+  content: 'off';
+  left: 4px;
+  font-size: 4px;
+  color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider{
+  background-color: #6e6a86;
+}
+
+input:checked + .slider::before{
+  transform: translateX(26px);
+}
+
+input:checked + .slider::after {
+  content: 'On';
+  background-color: #007BFF;
+  left: auto;
+  right: 4px;
+}
+
+.text{
+  margin-right: 10px;
 }
 
 #document-load{

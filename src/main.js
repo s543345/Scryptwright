@@ -31,7 +31,6 @@ function createWindow() {
 		mainWindow.show();
 	})
 	mainWindow.webContents.openDevTools()
-	;
 
   ipcMain.handle('dark-mode:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
@@ -47,6 +46,16 @@ function createWindow() {
   })
 	ipcMain.on('open-settings',() => {
 		openSettings();
+	})
+
+	ipcMain.handle('auto-save:toggle', (event,value) =>{
+		autoSaveSwitch = value;
+		console.log('Auto-save enabled:', autoSaveSwitch)
+		event.sender.send('autosave-update', autoSaveSwitch)
+		return autoSaveSwitch
+	})
+	ipcMain.handle('auto-save:check',()=>{
+		return autoSaveSwitch
 	})
 
 	mainWindow.webContents.ipc.on("toMain", (event, command, data) => {

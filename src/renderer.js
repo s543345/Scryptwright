@@ -1,7 +1,10 @@
+//const {savenote} = require('note.js')
+
 document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('toggle-dark-mode')
   const resetBtn = document.getElementById('reset-to-system')
   const themeLabel = document.getElementById('theme-source')
+  const autoBtn = document.getElementById('auto-save')
 
   if (toggleBtn && themeLabel) {
     toggleBtn.addEventListener('click', async () => {
@@ -16,56 +19,72 @@ document.addEventListener('DOMContentLoaded', () => {
       themeLabel.innerHTML = 'System'
     })
   }
+  window.onload = function() {
+    autoBtn.addEventListener('click', function(event){
+      const autoCheck = event.target.checked
+      window.autosave.toggle(autoCheck).then(() => {
+        console.log('Auto-save changed:', autoCheck)
+      }).catch((err) => {
+        console.log('Error:', err)
+      })
+    })
+  }
 })
 
-//frame size adjust to the window size
-const hdfr = document.getElementById('header')
-const docfr = document.getElementById('docs')
-const comfr = document.getElementById('coms')
-const textArea = document.getElementById('document');
-const noteArea = document.getElementById('notes');
-const charnum = document.getElementById('charnum');
+  //frame size adjust to the window size
+  const hdfr = document.getElementById('header')
+  const docfr = document.getElementById('docs')
+  const comfr = document.getElementById('coms')
+  const textArea = document.getElementById('document');
+  const noteArea = document.getElementById('notes');
+  const charnum = document.getElementById('charnum');
 
-hdfr.onload = function(){
-  hdfr.style.height = hdfr.contentWindow.document.body.scrollHeight+ 'px';
-  hdfr.style.width = hdfr.contentWindow.document.body.scrollHeight + 'px';
-  hdfr.style.borderRadius = '15px';
-}
+  hdfr.onload = function(){
+    hdfr.style.height = hdfr.contentWindow.document.body.scrollHeight+ 'px';
+    hdfr.style.width = hdfr.contentWindow.document.body.scrollHeight + 'px';
+    hdfr.style.borderRadius = '15px';
+  }
 
-docfr.onload = function(){
-  // frame adjustment and structure
-  docfr.style.height = docfr.contentWindow.document.body.scrollHeight + 'px';
-  docfr.style.width = docfr.contentWindow.document.body.scrollWidth + 'px';
-  docfr.style.borderRadius = '15px';
-}
+  docfr.onload = function(){
+    // frame adjustment and structure
+    docfr.style.height = docfr.contentWindow.document.body.scrollHeight + 'px';
+    docfr.style.width = docfr.contentWindow.document.body.scrollWidth + 'px';
+    docfr.style.borderRadius = '15px';
+  }
 
-comfr.onload = function(){
-  comfr.style.height = comfr.contentWindow.document.body.scrollHeight + 'px';
-  comfr.style.width = comfr.contentWindow.document.body.scrollWidth + 'px';
-  comfr.style.borderRadius = '15px';
-}
+  comfr.onload = function(){
+    comfr.style.height = comfr.contentWindow.document.body.scrollHeight + 'px';
+    comfr.style.width = comfr.contentWindow.document.body.scrollWidth + 'px';
+    comfr.style.borderRadius = '15px';
+  }
 
-textArea.onload = function(){
-  textArea.style.height = window.innerHeight * 0.8 + 'px';
-  textArea.style.width = window.innerWidth * 0.5 + 'px';
-  textArea.style.borderRadius = '15px';
-}
+  textArea.onload = function(){
+    textArea.style.height = window.innerHeight * 0.8 + 'px';
+    textArea.style.width = window.innerWidth * 0.5 + 'px';
+    textArea.style.borderRadius = '15px';
+  }
 
-noteArea.onload = function(){
-  textArea.style.height = window. innerHeight * 0.2 + 'px';
-  textArea.style.width = window.innerWidth * 0.5 + 'px';
-  textArea.style.borderRadius = '15px';
-}
+  noteArea.onload = function(){
+    textArea.style.height = window. innerHeight * 0.2 + 'px';
+    textArea.style.width = window.innerWidth * 0.5 + 'px';
+    textArea.style.borderRadius = '15px';
+  }
 
-//character counter
-textArea.addEventListener('input', function() {
-  charnum.textContent = this.value.length + " characters";
-})
+  //character counter
+  textArea.addEventListener('input', function() {
+    charnum.textContent = this.value.length + " characters";
+  })
 
-window.onload = function(){
-  charnum.style.height = charnum.offsetHeight + 'px';
-  charnum.style.width = charnum.offsetWidth + 'px';
-}
+  textArea.addEventListener('input',function() {
+    if(window.autosave.check()){
+      savenote()
+    }
+  })
+
+  window.onload = function(){
+    charnum.style.height = charnum.offsetHeight + 'px';
+    charnum.style.width = charnum.offsetWidth + 'px';
+  }
 
 function openSettings(){
   ipcRenderer.send('open-settings');
