@@ -28,7 +28,7 @@ ipcRenderer.on('autosave-update',(event,value)=>{
 
 contextBridge.exposeInMainWorld('autosave',{
     toggle: (value) => ipcRenderer.invoke('auto-save:toggle',value),
-    check: () => autosvchk
+    check: () => ipcRenderer.invoke('auto-save:check',autosvchk)
 })
 
 contextBridge.exposeInMainWorld(

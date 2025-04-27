@@ -48,12 +48,15 @@ function createWindow() {
 		openSettings();
 	})
 
+	let autoSaveSwitch = false
+
 	ipcMain.handle('auto-save:toggle', (event,value) =>{
 		autoSaveSwitch = value;
 		console.log('Auto-save enabled:', autoSaveSwitch)
 		event.sender.send('autosave-update', autoSaveSwitch)
 		return autoSaveSwitch
 	})
+
 	ipcMain.handle('auto-save:check',()=>{
 		return autoSaveSwitch
 	})

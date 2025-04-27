@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('toggle-dark-mode')
   const resetBtn = document.getElementById('reset-to-system')
   const themeLabel = document.getElementById('theme-source')
-  const autoBtn = document.getElementById('auto-save')
 
   if (toggleBtn && themeLabel) {
     toggleBtn.addEventListener('click', async () => {
@@ -19,16 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       themeLabel.innerHTML = 'System'
     })
   }
-  window.onload = function() {
-    autoBtn.addEventListener('click', function(event){
-      const autoCheck = event.target.checked
-      window.autosave.toggle(autoCheck).then(() => {
-        console.log('Auto-save changed:', autoCheck)
-      }).catch((err) => {
-        console.log('Error:', err)
-      })
-    })
-  }
 })
 
   //frame size adjust to the window size
@@ -38,6 +27,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const textArea = document.getElementById('document');
   const noteArea = document.getElementById('notes');
   const charnum = document.getElementById('charnum');
+  let saveTimeout
+
+  window.onload = async function() {
+    const autoBtn = document.getElementById('auto-save')
+    try {
+      const autoCheck = await window.autosave.check()
+      autoBtn.checked = autoCheck
+    }catch(err){
+      console.error('Failed to get auto-save status:', err);
+    }
+    autoBtn.addEventListener('click', function (event) {
+      const autoCheck = event.target.checked
+      window.autosave.toggle(autoCheck).then(() => {
+        console.log('Auto-save changed:', autoCheck)
+      }).catch((err) => {
+        console.log('Error:', err)
+      })
+    })
+  }
 
   hdfr.onload = function(){
     hdfr.style.height = hdfr.contentWindow.document.body.scrollHeight+ 'px';
@@ -71,13 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //character counter
-  textArea.addEventListener('input', function() {
+  textArea.addEventListener('input', async function() {
     charnum.textContent = this.value.length + " characters";
-  })
 
-  textArea.addEventListener('input',function() {
-    if(window.autosave.check()){
-      savenote()
+    const autoCheck = await window.autosave.check()
+    if (autoCheck) {
+      //clear the previous timeout
+      clearTimeout(saveTimeout)
+      //sets the new timeout
+      saveTimeout = setTimeout(()=> {
+        savenote()
+      },500 //saves after 500ms after the user stops typing
+      )
     }
   })
 
