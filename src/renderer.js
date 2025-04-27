@@ -156,10 +156,10 @@ function buildFileTree(container, files) {
       // Text file click event
       li.onclick = async (event) => {
         event.stopPropagation();
-        await openFile(file.path);
-      };
+        await loadFile(file.path)
+      }
     }container.appendChild(li);
-  });
+  })
 }
 
 /*<<<<<<< HEAD

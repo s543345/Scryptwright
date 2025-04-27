@@ -191,6 +191,7 @@ iframe:hover{
 
 /*Auto Save*/
 .toggle-switch{
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -201,7 +202,6 @@ iframe:hover{
   position: relative;
   display: flex;
   align-items: center;
-  left: 10px;
   width: 120px;
   height: 20px;
 }
@@ -216,7 +216,7 @@ iframe:hover{
   position: relative;
   cursor: pointer;
   height: 20px;
-  width: 60px;
+  width: 47.5px;
   inset: 0;
   background-color: #ccc;
   transition: 0.4s;
@@ -229,10 +229,10 @@ iframe:hover{
 .slider::before{
   position: absolute;
   content: '';
-  height: 15px;
+  height: 16px;
   width: 15px;
   left: 3px;
-  bottom: 3px;
+  bottom: 2px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
@@ -240,9 +240,8 @@ iframe:hover{
 
 .slider::after{
   position: absolute;
-  content: 'off';
+  content: '';
   left: 4px;
-  font-size: 4px;
   color: white;
   transition: 0.4s;
 }
@@ -256,7 +255,6 @@ input:checked + .slider::before{
 }
 
 input:checked + .slider::after {
-  content: 'On';
   background-color: #007BFF;
   left: auto;
   right: 4px;
@@ -264,6 +262,9 @@ input:checked + .slider::after {
 
 .text{
   margin-right: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 #document-load{
