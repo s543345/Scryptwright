@@ -191,11 +191,9 @@ iframe:hover{
 
 /*Auto Save*/
 .toggle-switch{
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
+  gap: 4px;
 }
 
 .switch{
@@ -204,6 +202,7 @@ iframe:hover{
   align-items: center;
   width: 120px;
   height: 20px;
+  margin: 0;
 }
 
 .switch input{
@@ -213,18 +212,24 @@ iframe:hover{
 }
 
 .slider {
-  position: relative;
+  position: absolute;
   cursor: pointer;
   height: 20px;
   width: 47.5px;
-  inset: 0;
+  top: 15%;
+  left: 20px;
   background-color: #ccc;
   transition: 0.4s;
   border-radius: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+
 }
+
+/*
+
+inset:0;
+display: flex;
+  align-items: center;
+  justify-content: flex-start;*/
 
 .slider::before{
   position: absolute;
@@ -261,7 +266,6 @@ input:checked + .slider::after {
 }
 
 .text{
-  margin-right: 10px;
   position: relative;
   display: flex;
   align-items: center;
@@ -323,16 +327,17 @@ input:checked + .slider::after {
   position: absolute;
   height: 90vh;
   top: 5.67%;
-  left:1px;
+  left:10px;
+  margin-top: 40px;
+  margin-left: -20px;
   z-index:4;
 }
 
 .sidebar ul{
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
-  margin-left: -20px;
   margin-bottom: 10px;
+  gap: 10px;
   z-index: 5;
 }
 /*.sidebar h3{
