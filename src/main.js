@@ -124,6 +124,8 @@ ipcMain.handle('note:createFile', async (event, args) => {
 	return await createFile();
 })
 
+let parentDir = ''
+
 // Opens a file dialog and returns the path to the file chosen.
 // Call as await window.note.selectFileDialog() via the "note" preload script
 async function selectFileDialog() {
@@ -131,11 +133,14 @@ async function selectFileDialog() {
 	let filePath = "noPath"
 	// Open file dialog
 	await dialog.showOpenDialog({
-		properties: ['openFIle'],
+		properties: ['openFile'],
 		filters: [{ name: 'Markdown Files', extensions: ['md']}] // only show .md files
 	}).then(function (response) {
-		// Set file path from response
-		filePath = response.filePaths[0]
+		if(!response.canceled && response.filePaths.length >0) {
+			// Set file path from response
+			filePath = response.filePaths[0]
+			parentDir = path.dirname(filePath)
+		}
 	})
 	return filePath
 }
@@ -143,6 +148,10 @@ async function selectFileDialog() {
 // Handler function for selectFileDialog()
 ipcMain.handle('note:selectFileDialog', async (event, ...args) => {
 	return await selectFileDialog() //returns filepath
+})
+
+ipcMain.handle('note:getParentDirectory',async () => {
+	return parentDir
 })
 
 

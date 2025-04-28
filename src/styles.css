@@ -321,16 +321,23 @@ input:checked + .slider::after {
 
 .sidebar {
   position: absolute;
-  width: 15vw;
   height: 90vh;
   top: 5.67%;
   left:1px;
-  z-index:4
+  z-index:4;
 }
 
-.sidebar h3{
-  height: 10px;
+.sidebar ul{
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-left: -20px;
+  margin-bottom: 10px;
+  z-index: 5;
 }
+/*.sidebar h3{
+  height: 10px;
+}*/
 
 #line{
   width: 100%;

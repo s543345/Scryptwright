@@ -125,7 +125,7 @@ let currentFilePath = ""; // Store the opened file path
 async function loadFileSystem(dirPath) {
   const files = await window.fsApi.getFileSystem(dirPath);
   if (files.error) return alert("Error: " + files.error);
-  document.getElementById("directoryPath").value = dirPath;
+  //document.getElementById("directoryPath").value = dirPath;
   const fileTree = document.getElementById("fileTree");
   fileTree.innerHTML = "";
   buildFileTree(fileTree, files);
